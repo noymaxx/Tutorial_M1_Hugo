@@ -1,0 +1,183 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/book.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://assets/chao-de-terra.png" type="Texture" id=4]
+[ext_resource path="res://assets/background.png" type="Texture" id=5]
+[ext_resource path="res://assets/fallingPallet.png" type="Texture" id=6]
+[ext_resource path="res://assets/engineer-idle.png" type="Texture" id=7]
+[ext_resource path="res://scenes/computer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/pencil.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 254.206, 47.5124 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26.5, 37.5 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprites:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprites:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "parado"
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 102, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 95.75, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 98, 11.25 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 2.5, 232.5 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 6, 233.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 518, 4.5 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 1, -1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 542, 291 )
+scale = Vector2( 3.34121, 2.92128 )
+texture = ExtResource( 5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+position = Vector2( 0.206352, 86.75 )
+scale = Vector2( 0.746256, 0.626002 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2( 0.791649, 1.60875 )
+shape = SubResource( 4 )
+
+[node name="chao-terra" type="Sprite" parent="Background"]
+position = Vector2( 0.206352, 86.75 )
+scale = Vector2( 0.746256, 0.626002 )
+texture = ExtResource( 4 )
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 304, 158 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="collision-player" type="CollisionShape2D" parent="player"]
+position = Vector2( 218.5, 260.5 )
+shape = SubResource( 1 )
+
+[node name="sprites" type="Sprite" parent="player"]
+position = Vector2( 222.556, 256.5 )
+scale = Vector2( 3.28397, 2.96429 )
+texture = ExtResource( 7 )
+hframes = 8
+region_rect = Rect2( 3, 9, 717.36, 344.251 )
+
+[node name="animation-player" type="AnimationPlayer" parent="player"]
+anims/RESET = SubResource( 3 )
+anims/parado = SubResource( 2 )
+
+[node name="plataform1" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform1"]
+position = Vector2( 216, 359 )
+shape = SubResource( 5 )
+
+[node name="FallingPallet" type="Sprite" parent="plataform1/CollisionShape2D"]
+scale = Vector2( 0.815789, 0.777778 )
+texture = ExtResource( 6 )
+
+[node name="plataform2" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform2"]
+position = Vector2( 512, 257 )
+shape = SubResource( 6 )
+
+[node name="FallingPallet" type="Sprite" parent="plataform2/CollisionShape2D"]
+position = Vector2( 3.00001, 3 )
+scale = Vector2( 0.846154, 0.805555 )
+texture = ExtResource( 6 )
+
+[node name="plataform3" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataform3"]
+position = Vector2( 770, 361.75 )
+shape = SubResource( 7 )
+
+[node name="FallingPallet" type="Sprite" parent="plataform3/CollisionShape2D"]
+position = Vector2( 2.17007, 2.9271 )
+scale = Vector2( 0.816437, 0.740161 )
+texture = ExtResource( 6 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 311, 148 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 713.5, 75.5 )
+shape = SubResource( 8 )
+
+[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+position = Vector2( 311, 148 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
+position = Vector2( -316, 83.5 )
+shape = SubResource( 9 )
+
+[node name="KinematicBody2D3" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D3"]
+position = Vector2( 508, -5.5 )
+shape = SubResource( 10 )
+
+[node name="book" parent="." instance=ExtResource( 1 )]
+position = Vector2( 659, 257 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="pencil" parent="." instance=ExtResource( 9 )]
+position = Vector2( 108, 226 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="pc" parent="." instance=ExtResource( 8 )]
+position = Vector2( 385, 129 )
+scale = Vector2( 0.25, 0.25 )

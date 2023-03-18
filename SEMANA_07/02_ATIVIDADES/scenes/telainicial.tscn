@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/image-removebg-preview (27).png" type="Texture" id=1]
+[ext_resource path="res://assets/e53cb7f8e8cf5b6f52ec839a8dc3b219.png" type="Texture" id=2]
+[ext_resource path="res://scripts/telainicial.gd" type="Script" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/background.png-4e52c5d0d0f0d041f54263896aa1dbbd.stex"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 511.418, 281.75 )
+scale = Vector2( 2.68723, 2.68723 )
+texture = SubResource( 1 )
+
+[node name="title" type="Sprite" parent="."]
+position = Vector2( 501, 133 )
+scale = Vector2( 0.442085, 0.442085 )
+texture = ExtResource( 2 )
+
+[node name="Play" type="TextureButton" parent="."]
+margin_left = 379.0
+margin_top = 295.0
+margin_right = 639.0
+margin_bottom = 575.0
+texture_normal = ExtResource( 1 )
+
+[connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
